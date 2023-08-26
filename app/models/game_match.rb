@@ -22,25 +22,21 @@ class GameMatch < ApplicationRecord
   end
 
   # Método para analisar uma linha de morte
-def self.parse_kill_line(line, current_match)
-  parts = line.split
-  killer_id = parts[2].to_i  # Converte para inteiro
-  victim_id = parts[3].chomp(':').to_i  # Converte para inteiro
-  cause_of_death = parts[4..-1].join(' ')
+  def self.parse_kill_line(line, current_match)
+    parts = line.split
+    killer_id = parts[2].to_i  # Converte para inteiro
+    victim_id = parts[3].chomp(':').to_i  # Converte para inteiro
+    cause_of_death = parts[4..-1].join(' ')
 
-  puts "Killer ID: #{killer_id}, Victim ID: #{victim_id}"
+    # Encontra ou cria os jogadores envolvidos na morte
+    killer = Player.find_or_create_by(id: killer_id)  # Usa ID para busca ou criação
+    victim = Player.find_or_create_by(id: victim_id)  # Usa ID para busca ou criação
 
-  # Encontra ou cria os jogadores envolvidos na morte
-  killer = Player.find_or_create_by(id: killer_id)  # Usa ID para busca ou criação
-  victim = Player.find_or_create_by(id: victim_id)  # Usa ID para busca ou criação
-
-  puts "Killer: #{killer.inspect}, Victim: #{victim.inspect}, Current Match: #{current_match.inspect}"
-
-  # Cria uma nova instância de Kill associada à partida atual
-  current_kill = current_match.kills.create!(
-    killer: killer,
-    victim: victim,
-    cause_of_death: cause_of_death
-  )
+    # Cria uma nova instância de Kill associada à partida atual
+    current_kill = current_match.kills.create!(
+      killer: killer,
+      victim: victim,
+      cause_of_death: cause_of_death
+    )
+  end
 end
-end 
