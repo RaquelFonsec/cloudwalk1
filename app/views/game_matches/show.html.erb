@@ -5,3 +5,20 @@
     <li><%= "#{kill.killer.name} killed #{kill.victim.name} using #{kill.cause_of_death}" %></li>
   <% end %>
 </ul>
+<h2>Deaths by Cause</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Cause of Death</th>
+      <th>Count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @game_match.deaths_by_means.each do |cause, count| %>
+      <tr>
+        <td><%= cause %></td>
+        <td><%= count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

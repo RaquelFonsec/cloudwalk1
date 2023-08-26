@@ -1,8 +1,36 @@
-
 <h1>Game Matches</h1>
-<ul>
-  <% @game_matches.each do |game_match| %>
-    <li><%= link_to "Game Match ##{game_match.id}", game_match_path(game_match) %></li>
-    <%= link_to 'Parse Log', parse_log_path, method: :post %>
-  <% end %>
-</ul>
+<ul><% @game_matches.each do |game_match| %>
+  <li>
+    <%= link_to "Game Match ##{game_match.id}", game_match_path(game_match) %>
+    <%= link_to 'Parse Log', parse_log_path(game_match_id: game_match.id), method: :post %>
+  </li>
+<% end %>
+
+
+<!-- Exibição dos detalhes do jogo atual -->
+<% if @game_match.present? %>
+  <h1>Game Match ##<%= @game_match.id %></h1>
+  <h2>Kills:</h2>
+  <ul>
+    <% @game_match.kills.each do |kill| %>
+      <li><%= "#{kill.killer.name} killed #{kill.victim.name} using #{kill.cause_of_death}" %></li>
+    <% end %>
+  </ul>
+  <h2>Deaths by Cause</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Cause of Death</th>
+        <th>Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @game_match.deaths_by_means.each do |cause, count| %>
+        <tr>
+          <td><%= cause %></td>
+          <td><%= count %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
