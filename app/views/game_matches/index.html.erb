@@ -1,0 +1,8 @@
+
+<h1>Game Matches</h1>
+<ul>
+  <% @game_matches.each do |game_match| %>
+    <li><%= link_to "Game Match ##{game_match.id}", game_match_path(game_match) %></li>
+    <%= link_to 'Parse Log', parse_log_path, method: :post %>
+  <% end %>
+</ul>

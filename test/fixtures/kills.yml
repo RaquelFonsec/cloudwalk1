@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  killer: one
+  victim: one
+  cause_of_death: MyString
+
+two:
+  killer: two
+  victim: two
+  cause_of_death: MyString

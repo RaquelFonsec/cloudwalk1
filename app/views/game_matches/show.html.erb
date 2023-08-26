@@ -1,0 +1,7 @@
+<h1>Game Match ##{params[:id]}</h1>
+<h2>Kills:</h2>
+<ul>
+  <% @game_match.kills.each do |kill| %>
+    <li><%= "#{kill.killer.name} killed #{kill.victim.name} using #{kill.cause_of_death}" %></li>
+  <% end %>
+</ul>
