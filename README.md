@@ -34,12 +34,12 @@ Total Kills: 45
 
 Players:
 
-Dono da bola
+ball owner
 Isgalamido
 Zeh
 Kills:
 
-Dono da bola: 5 kills
+ball owner: 5 kills
 Isgalamido: 18 kills
 Zeh: 20 kills
 Causes of Death:
