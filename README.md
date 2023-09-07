@@ -20,11 +20,18 @@ git clone https://github.com/RaquelFonsec/cloudwalk1.git
 cd cloudwalk1
 
 
-3. Execute the log analysis script by running the following command:
+3. Install the required Ruby gems by running:
+   bundle install
+
+
+4. Run the database migrations to set up the necessary database schema:
+ rails db:migrate
+
+5. Execute the log analysis script by running the following command:
 
 ruby bin/analyze_log.rb logs/game.log
 
-3. The script will process the log file and generate match reports in the terminal.
+ The script will process the log file and generate match reports in the terminal.
 
 
 Sample output of the script execution:
